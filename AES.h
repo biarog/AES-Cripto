@@ -46,7 +46,7 @@ void mix_columns(T_block state, T_block matriz);
 
 void add_key(T_block state, T_block subkey);
 
-T_column* g_function(T_column word3, int round);
+void g_function(T_column gword, int round);
 
 void add_word(T_column word1, T_column word2);
 
