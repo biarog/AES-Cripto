@@ -27,8 +27,9 @@ const uint8_t SBOX[] = {
 /* f */  0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16,
 };
 
-// A separação do bloco em colunas facilita o mix de colunas 
-// Essa configuração do bloco implica em um acesso aos elementos dado por: state[col][row] 
+// a separação do bloco em colunas facilita o mix de colunas 
+// essa configuração do bloco implica em um acesso aos elementos dado por: state[col][row] 
+// como o AES implementado é o de 128 bits, a utilização do tipo uint8_t é conveniente
 typedef uint8_t T_column[4];
 typedef T_column T_block[4];
 
