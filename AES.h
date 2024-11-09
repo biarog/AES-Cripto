@@ -4,6 +4,12 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+// a separação do bloco em colunas facilita o mix de colunas 
+// essa configuração do bloco implica em um acesso aos elementos dado por: state[col][row] 
+// como o AES implementado é o de 128 bits, a utilização do tipo uint8_t é conveniente
+typedef uint8_t T_column[4];
+typedef T_column T_block[4];
+
 // TABELA DE SUBSTITUIÇÃO
 // manter em um vetor (ao invés de matrix bidimensional) facilita a substiuição de bytes
 // a valor de substiuição de xy encontra-se na xy-ésima posição do vetor
@@ -27,11 +33,8 @@ const uint8_t SBOX[] = {
 /* f */  0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68, 0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16,
 };
 
-// a separação do bloco em colunas facilita o mix de colunas 
-// essa configuração do bloco implica em um acesso aos elementos dado por: state[col][row] 
-// como o AES implementado é o de 128 bits, a utilização do tipo uint8_t é conveniente
-typedef uint8_t T_column[4];
-typedef T_column T_block[4];
+// COEFICIENTES RC PARA AS 10 RODADAS
+const uint8_t RC[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
 
 void sub_byte(T_block state);
 
@@ -42,5 +45,11 @@ uint8_t mult_GF(uint8_t a, uint8_t b);
 void mix_columns(T_block state, T_block matriz);
 
 void add_key(T_block state, T_block subkey);
+
+T_column* g_function(T_column word3, int round);
+
+void add_word(T_column word1, T_column word2);
+
+void key_schedule(T_block key, int round);
 
 #endif

@@ -104,3 +104,47 @@ void add_key(T_block state, T_block subkey) {
   }  
 }
 
+// KEY SCHEDULE 
+// FUNÇÃO G
+T_column* g_function(T_column word3, int round) {
+  T_column gword;
+
+  // deslocamento de 1 byte a esq
+  uint8_t temp = gword[0];
+  gword[0] = gword[1];
+  gword[1] = gword[2];
+  gword[2] = gword[3];
+  gword[3] = temp;
+
+  // substituição de byte com tabela SBOX
+  uint8_t index;
+  for (int i = 0; i < 4; i++) {
+    index = gword[i];
+    gword[i] = SBOX[index];
+  }
+
+  // adição de coeficiente
+  gword[0] ^= RC[round];
+
+  return gword;
+}
+
+// SOMA DAS PALAVRAS
+// o primeiro parâmetro recebe o resultado
+void add_word(T_column word1, T_column word2) {
+  for (int i = 0; i < 4; i++) {
+    word1[i] ^= word2[i];
+  }
+}
+
+void key_schedule(T_block key, int round) {
+  // passando a última coluna/word pra função g()
+  T_column g_word = g_function(key[3], round);
+
+  // realizando as operações de adição  
+  add_word(key[0], g_word);
+  add_word(key[1], key[0]);
+  add_word(key[2], key[1]);
+  add_word(key[3], key[2]);
+}
+
