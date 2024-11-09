@@ -41,4 +41,6 @@ uint8_t mult_GF(uint8_t a, uint8_t b);
 
 void mix_columns(T_block state, T_block matriz);
 
+void add_key(T_block state, T_block subkey);
+
 #endif

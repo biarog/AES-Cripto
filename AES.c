@@ -94,3 +94,13 @@ void mix_columns(T_block matrix, T_block state) {
   }
 
 }
+
+// ADIÇÃO DE CHAVE DA RODADA
+void add_key(T_block state, T_block subkey) {
+  for (int i = 0; i < 4; i++) {
+    for (int j = 0; j < 4; j++) {
+      state[j][i] ^= subkey[j][i];
+    }
+  }  
+}
+
