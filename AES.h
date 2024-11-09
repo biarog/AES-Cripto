@@ -36,6 +36,10 @@ const uint8_t SBOX[] = {
 // COEFICIENTES RC PARA AS 10 RODADAS
 const uint8_t RC[] = {0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x1b, 0x36};
 
+const T_block CONST_M = {{0x02, 0x01, 0x01, 0x03}, {0x03, 0x02, 0x01, 0x01}, {0x01, 0x03, 0x02, 0x01}, {0x01, 0x01, 0x03, 0x02}};
+
+void string2tblock (char str[], T_block block);
+
 void sub_byte(T_block state);
 
 void shift_rows(T_block state);
@@ -51,5 +55,7 @@ void g_function(T_column gword, int round);
 void add_word(T_column word1, T_column word2);
 
 void key_schedule(T_block key, int round);
+
+void encrypt(char key[], char plain_txt[], char cypher[]);
 
 #endif

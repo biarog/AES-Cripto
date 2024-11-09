@@ -3,6 +3,16 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+
+// Transforma um string para um T_block
+void string2tblock (char str[], T_block block) {
+    for (int j = 0; j < 4; j++) {
+        for (int i = 0; i < 4; i++) {
+            block[j][i] = str[4*j + i];
+        }
+    }
+}
+
 // CAMADA DE SUBSTITUIÇÃO
 void sub_byte(T_block state) {
   uint8_t index;
@@ -149,3 +159,33 @@ void key_schedule(T_block key, int round) {
   add_word(key[3], key[2]);
 }
 
+void encrypt(char key[], char plain_txt[], char cypher[]) {
+  T_block key_block, state;
+
+  string2tblock(key, key_block);
+  string2tblock(plain_txt, state);
+
+  add_key(state, key_block);
+
+  for (int i = 0; i < 10; i++) {
+
+    sub_byte(state);
+
+    shift_rows(state);
+
+    if(i < 9) {
+      mix_columns(CONST_M, state);
+    }
+
+    key_schedule(key_block, i);
+
+    add_key(state, key_block);
+  }
+
+  for(int j = 0; j < 4; j++) {
+    for(int i = 0; i < 4; i++) {
+      cypher[4*j + i] = state[j][i];
+    } 
+  }
+  cypher[16] = '\0';
+}
