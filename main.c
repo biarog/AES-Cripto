@@ -6,20 +6,25 @@
 
 int main() {
 
-    char key[16+1], plain_txt[16+1];
-    char cypher[16+1];
+    // INPUT: 
+    //  - texto claro: string
+    //  - chave: string
 
-    scanf("Digite o texto a ser cifrado: %[^\n]", plain_txt);
-    scanf("Digite a chave a ser utilizada na cifra: %[^\n]", key);
+    unsigned char plain_text[16+1], key[16+1], cypher[16+1];
 
-    encrypt(key, plain_txt, cypher);
-
-    printf("Sucesso!\nO seu texto cifrado é:\n");
-
-    for(int i = 0; i < 17; i++) {
-        printf("%x", cypher[i]);
+    printf("Texto claro: ");
+    for (int i = 0; i < 16; i++){
+        scanf("%2hhx", &plain_text[i]);
     }
-    printf("\n");
+    plain_text[16] = '\0';
+
+    printf("Chave: ");
+    for (int i = 0; i < 16; i++){
+        scanf("%2hhx", &key[i]);
+    }
+    key[16] = '\0';
+
+    encrypt(key, plain_text, cypher);
 
     return 0;
 }
