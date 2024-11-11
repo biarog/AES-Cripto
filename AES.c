@@ -118,20 +118,20 @@ uint8_t mult_GF(uint8_t a, uint8_t b) {
 
 void mix_columns(const T_block matrix, T_block state) {
   uint8_t temp0, temp1, temp2, temp3;
-
   
+  // percorre cada coluna do state e multiplica pela matriz constante
   for (int j = 0; j < 4; j++) {
-    temp0 = mult_GF(matrix[0][j], state[j][0])^mult_GF(matrix[1][j], state[j][1])^mult_GF(matrix[2][j], state[j][2])^mult_GF(matrix[3][j], state[j][3]);
-    temp1 = mult_GF(matrix[3][j], state[j][0])^mult_GF(matrix[0][j], state[j][1])^mult_GF(matrix[1][j], state[j][2])^mult_GF(matrix[2][j], state[j][3]);
-    temp2 = mult_GF(matrix[2][j], state[j][0])^mult_GF(matrix[3][j], state[j][1])^mult_GF(matrix[0][j], state[j][2])^mult_GF(matrix[1][j], state[j][3]);
-    temp3 = mult_GF(matrix[1][j], state[j][0])^mult_GF(matrix[2][j], state[j][1])^mult_GF(matrix[3][j], state[j][2])^mult_GF(matrix[0][j], state[j][3]);
+    temp0 = mult_GF(matrix[0][0], state[j][0])^mult_GF(matrix[1][0], state[j][1])^mult_GF(matrix[2][0], state[j][2])^mult_GF(matrix[3][0], state[j][3]);
+    temp1 = mult_GF(matrix[0][1], state[j][0])^mult_GF(matrix[1][1], state[j][1])^mult_GF(matrix[2][1], state[j][2])^mult_GF(matrix[3][1], state[j][3]);
+    temp2 = mult_GF(matrix[0][2], state[j][0])^mult_GF(matrix[1][2], state[j][1])^mult_GF(matrix[2][2], state[j][2])^mult_GF(matrix[3][2], state[j][3]);
+    temp3 = mult_GF(matrix[0][3], state[j][0])^mult_GF(matrix[1][3], state[j][1])^mult_GF(matrix[2][3], state[j][2])^mult_GF(matrix[3][3], state[j][3]);
 
     state[j][0] = temp0;
     state[j][1] = temp1;
     state[j][2] = temp2;
     state[j][3] = temp3;
-  }
 
+  }
 }
 
 // ADIÇÃO DE CHAVE DA RODADA
@@ -233,7 +233,7 @@ void encrypt(unsigned char key[], unsigned char plain_txt[], unsigned char cyphe
     }
 
     key_schedule(key_block, i);
-    printf("\nkey: \n");
+    printf("\nroundkey: \n");
     print_block(key_block);
 
     add_key(state, key_block);

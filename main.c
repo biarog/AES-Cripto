@@ -26,5 +26,9 @@ int main() {
 
     encrypt(key, plain_text, cypher);
 
+    printf("\nTexto cifrado: ");
+    for (int i = 0; i < 16; i++) 
+        printf("%02x", cypher[i]);
+
     return 0;
 }
