@@ -8,4 +8,4 @@ aes.o: aes.c aes.h
 	gcc -c aes.c -o aes.o
 
 clean:
-	rm aes *.o
+	rm main *.o

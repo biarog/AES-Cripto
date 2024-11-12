@@ -1,9 +1,8 @@
-#include "AES.h"
-
 #include <stdlib.h>
+#include <stdio.h>
 #include <stdint.h>
 
-#include <stdio.h>
+#include "AES.h"
 
 // TABELA DE SUBSTITUIÇÃO
 // manter em um vetor (ao invés de matrix bidimensional) facilita a substiuição de bytes
