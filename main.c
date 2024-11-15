@@ -17,19 +17,18 @@ int main() {
     printf("=               Bem vindo(a) ao programa de criptografia AES!!             =\n");
     printf("============================================================================\n");
 
-    printf("Por favor, escolha se sua criptografia receberá um texto com caracteres \n'normais' ou em hexadecimal:\n");
-    printf("normal = 0 | hex = 1\n");
+    printf("Informe se seu texto claro será dado em\n(0) caracteres ASCII\n(1) valores hexadecimais\n: ");
 
     scanf(" %d", &choice);
 
     if(!choice) {
-        printf("Digite seu texto claro: ");
+        printf("Digite seu texto claro (ASCII): ");
         for (int i = 0; i < 16; i++){
             scanf(" %c", &plain_text[i]);
         }
 
     } else {
-        printf("Digite seu texto claro em hexadecimal: ");
+        printf("Digite seu texto claro (hex): ");
         for (int i = 0; i < 16; i++){
             scanf(" %2hhx", &plain_text[i]);
         }
@@ -37,7 +36,7 @@ int main() {
     
     plain_text[16] = '\0';
 
-    printf("Digite a chave que será utilizada para criptografar em hex: ");
+    printf("Digite sua chave (hex): ");
     for (int i = 0; i < 16; i++){
         scanf(" %2hhx", &key[i]);
     }

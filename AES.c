@@ -202,7 +202,9 @@ void encrypt(unsigned char key[], unsigned char plain_txt[], unsigned char cyphe
   string2tblock(key, key_block);
   string2tblock(plain_txt, state);
 
-  printf("ROUND 0: ===============\n");
+  printf("\n============================================================================\n");
+  printf("=                                 ROUND 0                                  =\n");
+  printf("============================================================================");
 
   printf("\nstate:\n");
   print_block(state);
@@ -215,7 +217,9 @@ void encrypt(unsigned char key[], unsigned char plain_txt[], unsigned char cyphe
   print_block(state);
 
   for (int i = 0; i < 10; i++) {
-    printf("\n ROUND %d: ==============================", i+1);
+    printf("\n============================================================================\n");
+    printf("=                                 ROUND %d                                =\n",  i+1);
+    printf("============================================================================");
 
     sub_byte(state);
     printf("\nstate pós SubBytes(): \n");
