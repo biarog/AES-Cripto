@@ -22,3 +22,9 @@ e realizar sua chamada:
 ```
 ./<programa>
 ``` 
+
+## Autores
+Beatriz Rogers Tripoli Barbosa
+Daniel Oliveira Rocha
+Laura Naomi Seto
+Raul Yoshiyuki Komai 
