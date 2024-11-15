@@ -24,7 +24,7 @@ e realizar sua chamada:
 ``` 
 
 ## Autores
-Beatriz Rogers Tripoli Barbosa
-Daniel Oliveira Rocha
-Laura Naomi Seto
-Raul Yoshiyuki Komai 
+- Beatriz Rogers Tripoli Barbosa
+- Daniel Oliveira Rocha
+- Laura Naomi Seto
+- Raul Yoshiyuki Komai 
